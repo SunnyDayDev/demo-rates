@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rates__prompt__rates">Rates</string>
+    <string name="rates__prompt__zero">0.00</string>
+    <string name="rates__prompt__error_description">Failed to load rates data. Check your internet connection and retry.</string>
+    <string name="rates__prompt__retry">Retry</string>
+</resources>

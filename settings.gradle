@@ -1,0 +1,31 @@
+include ':app'
+rootProject.name = "Rates"
+
+// region Core
+
+include ':core'
+project(':core').projectDir = new File('source/core')
+
+include ':core:core-common'
+include ':core:core-di'
+include ':core:core-ui'
+
+// endregion
+
+// region Domain
+
+include ':domain'
+project(':domain').projectDir = new File('source/domain')
+
+include ':domain:domain-currencies'
+
+// endregion
+
+// region Feature
+
+include ':ui'
+project(':ui').projectDir = new File('source/ui')
+
+include ':ui:ui-rates'
+
+// endregion
