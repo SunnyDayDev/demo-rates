@@ -43,11 +43,6 @@ class RatesFragment @Inject internal constructor(
     override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
         viewModelFactory
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewEffectHandler.view = this
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,22 +59,19 @@ class RatesFragment @Inject internal constructor(
 
     override fun onStart() {
         super.onStart()
+        viewEffectHandler.view = this
         loopController.start()
     }
 
     override fun onStop() {
         super.onStop()
         loopController.stop()
+        viewEffectHandler.view = null
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         loopController.disconnect()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        viewEffectHandler.view = null
     }
 
     override fun hideKeyboard() {
