@@ -14,3 +14,7 @@
 .cxx
 
 buildSrc/build/
+
+app/keystore.jks
+
+app/signing.properties
