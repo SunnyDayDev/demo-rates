@@ -11,7 +11,7 @@ import javax.inject.Inject
 internal class RatesAdapter @Inject constructor(
     private val itemViewHolderFactory: CurrencyRateItemViewHolder.Factory,
     private val differ: Differ<CurrencyRateItem>
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+): RecyclerView.Adapter<CurrencyRateItemViewHolder>() {
 
     var items: List<CurrencyRateItem> = emptyList()
         set(value) {
@@ -33,18 +33,13 @@ internal class RatesAdapter @Inject constructor(
 
     override fun getItemId(position: Int): Long = items[position].currency.ordinal.toLong()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyRateItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = RatesListItemBinding.inflate(inflater, parent, false)
         return itemViewHolderFactory.create(binding)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = when (holder) {
-        is CurrencyRateItemViewHolder -> onBindViewHolder(holder, position)
-        else -> Unit
-    }
-
-    private fun onBindViewHolder(holder: CurrencyRateItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CurrencyRateItemViewHolder, position: Int) {
         val item = items.getOrNull(position)
             ?: return
 
